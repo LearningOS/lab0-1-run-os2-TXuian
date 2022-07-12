@@ -69,6 +69,7 @@ pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
     exit(main(argc, v.as_slice()));
 }
 
+// use other main if find more than one main()
 #[linkage = "weak"]
 #[no_mangle]
 fn main(_argc: usize, _argv: &[&str]) -> i32 {

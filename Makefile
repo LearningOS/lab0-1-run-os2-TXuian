@@ -30,7 +30,6 @@ test1: setup
 	cp -r os1 ${DIR}/os
 	cd ${DIR}/ci-user && make test CHAPTER=1
 
-
 test2: setup
 	cp -r os2 ${DIR}/os
 	cd ${DIR}/ci-user && make test CHAPTER=2
