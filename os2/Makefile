@@ -1,7 +1,9 @@
 # Building
 TARGET := riscv64gc-unknown-none-elf
 MODE := release
+# kernel executable file path
 KERNEL_ELF := target/$(TARGET)/$(MODE)/os
+# kernel executable file name
 KERNEL_BIN := $(KERNEL_ELF).bin
 KERNEL_ASM := $(KERNEL_ELF).asm
 
@@ -26,6 +28,7 @@ build: env $(KERNEL_BIN)
 $(KERNEL_BIN): kernel
 	@$(OBJCOPY) $(KERNEL_ELF) --strip-all -O binary $@
 
+# dis asm command
 disasm:
 	@$(OBJDUMP) $(KERNEL_ELF) -S > $(KERNEL_ELF).asm
 

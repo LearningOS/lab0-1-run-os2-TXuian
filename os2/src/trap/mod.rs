@@ -15,6 +15,7 @@ pub fn init() {
         fn __alltraps();
     }
     unsafe {
+        // stvec stores trap service entrance
         stvec::write(__alltraps as usize, TrapMode::Direct);
     }
 }

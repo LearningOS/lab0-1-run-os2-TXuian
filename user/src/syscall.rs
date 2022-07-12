@@ -40,15 +40,19 @@ pub const SYSCALL_CONDVAR_CREATE: usize = 471;
 pub const SYSCALL_CONDVAR_SIGNAL: usize = 472;
 pub const SYSCALL_CONDVAR_WAIT: usize = 473;
 
+
+// use syscall
 pub fn syscall(id: usize, args: [usize; 3]) -> isize {
     let mut ret: isize;
     unsafe {
         core::arch::asm!(
-            "ecall",
+            "ecall", // use ecall to activate trap
+            // x10(a0) used for passing param and storing ret val
             inlateout("x10") args[0] => ret,
+            // x11(a1), x12(a2) used for passing param
             in("x11") args[1],
             in("x12") args[2],
-            in("x17") id
+            in("x17") id // x12(a7) used for assign syscall ID
         );
     }
     ret
